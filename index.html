@@ -65,6 +65,21 @@
     <div class="container mt-5" id="contact">
         <h2>Contact</h2>
         <p>Please email cxgamedev@gmail.com here: <a href="mailto:cxgamedev@gmail.com">Send email</a></p>
+        <p>Or sumbit a feedback form:</p>
+        <form action="https://formspree.io/f/xpwqwgpy" method="POST">
+            <div class="form-group">
+                <label for="email-input">Email address</label>
+                <input type="email" class="form-control" id="email-input" aria-describedby="emailHelp">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label>Your message:</label>
+                <textarea name="message"></textarea>
+            </div>
+
+            <!-- your other form fields go here -->
+            <button type="submit" class="btn btn-primary">Send</button>
+        </form>
     </div>
     <footer class="text-center mt-5">
         <p>&copy; 2025 CX Game Development. All rights reserved.</p>
