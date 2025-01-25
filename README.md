@@ -1,7 +1,3 @@
-Based on the uploaded HTML file, I will create a README.md file for the CX Game Development project. Here’s a draft:
-
----
-
 # CX Game Development
 
 ## Introduction
