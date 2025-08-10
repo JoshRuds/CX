@@ -1,20 +1,22 @@
 [
   {
     "name": "Paracord Survival Bracelet",
-    "price": "$12.99",
-    "description": "Handwoven survival bracelet with a firestarter buckle.",
-    "image": "images/bracelet.jpg"
+    "price": "£2.99",
+    "description": "Handwoven survival bracelet."
   },
   {
-    "name": "Paracord Keychain",
-    "price": "$6.50",
-    "description": "Durable and stylish keychain made from 550 paracord.",
-    "image": "images/keychain.jpg"
+    "name": "Paracord Bottle Wrap",
+    "price": "£1.99",
+    "description": "Durable and stylish keychain made from paracord."
   },
   {
-    "name": "100ft Paracord Rope - Neon Green",
-    "price": "$14.99",
-    "description": "Strong, lightweight 550 paracord for camping and survival.",
-    "image": "images/rope.jpg"
+    "name": "Paracord Lasso",
+    "price": "£0.99",
+    "description": "Lasso made from honda knot."
+  },
+  {
+    "name": "Paracord Lasso (Slip Knot)",
+    "price": "£0.99",
+    "description": "Lasso made from knitting slip knot."
   }
 ]
