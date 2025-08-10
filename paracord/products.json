@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Paracord Survival Bracelet",
+    "price": "$12.99",
+    "description": "Handwoven survival bracelet with a firestarter buckle.",
+    "image": "images/bracelet.jpg"
+  },
+  {
+    "name": "Paracord Keychain",
+    "price": "$6.50",
+    "description": "Durable and stylish keychain made from 550 paracord.",
+    "image": "images/keychain.jpg"
+  },
+  {
+    "name": "100ft Paracord Rope - Neon Green",
+    "price": "$14.99",
+    "description": "Strong, lightweight 550 paracord for camping and survival.",
+    "image": "images/rope.jpg"
+  }
+]
