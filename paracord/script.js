@@ -6,7 +6,6 @@ fetch('products.json')
       const card = document.createElement('div');
       card.className = 'product-card';
       card.innerHTML = `
-        <img src="${product.image}" alt="${product.name}" />
         <h2>${product.name}</h2>
         <p>${product.description}</p>
         <p class="price">${product.price}</p>
