@@ -18,7 +18,7 @@ async function randomPng() {
 }
 
 async function setup() {
-  const namesRes = await fetch("countryNames.json");
+  const namesRes = await fetch("flagnames.json");
   countryNames = await namesRes.json();
 
   const r = await fetch("images.json");
