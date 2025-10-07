@@ -42,10 +42,10 @@ async function setup() {
   flagimg.setAttribute("src", correctFlag);
 
   for (let i = 0; i < 4; i++) {
-    const code = strip(choices[i]);
-    const name = countryNames[code] || code.toUpperCase();
-    buttons[i].innerText = name;
-    buttons[i].value = code;
+    const fileName = choices[i];       // "flags/ad.png"
+    const name = countryNames[fileName] || fileName; // use full filename as key
+    buttons[i].innerText = name;       // display the name from JSON
+    buttons[i].value = fileName;       // store full path for checking
   }
 
   document.getElementById("feed").innerHTML = "";
@@ -53,7 +53,7 @@ async function setup() {
 
 async function clicked(btn) {
   const x = document.getElementById("feed");
-  if (btn.value === strip(correctFlag)) {
+  if (btn.value === correctFlag) {
     x.innerHTML = "✅ Correct!";
   } else {
     x.innerHTML = "❌ Wrong!";
