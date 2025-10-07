@@ -16,8 +16,13 @@ async function setup() {
   var flag4 = document.getElementById("flag4");
   var flagimg = document.getElementById("flagimg");
 
-  flag1.innerHTML = "";
-  var flag = await randomPng();
+  flag1.innerHTML = await randomPng();
+  flag2.innerHTML = await randomPng();
+  flag3.innerHTML = await randomPng();
+  flag4.innerHTML = await randomPng();
+  var flags = [flag1,flag2,flag3,flag4];
+  var flag = flags[Math.floor(Math.random() * 4)].innerHTML;
+  
 
   flagimg.setAttribute("src", flag);
 };
