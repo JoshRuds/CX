@@ -14,7 +14,7 @@ async function setup() {
   // Load images.json and countryNames.json
   const [imagesRes, namesRes] = await Promise.all([
     fetch("images.json"),
-    fetch("countryNames.json")
+    fetch("flagnames.json")
   ]);
   const images = await imagesRes.json();
   const countryNames = await namesRes.json();
