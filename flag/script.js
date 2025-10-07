@@ -1,39 +1,63 @@
 function sleep(ms) {
- return new Promise(resolve => setTimeout(resolve, ms));
-};
-
-async function randomPng() {
-  const r = await fetch("images.json");
-  const images = await r.json();
-  var ra = images[Math.floor(Math.random() * images.length)];
-  return ra;
-};
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 async function setup() {
-  var flag1 = document.getElementById("flag1");
-  var flag2 = document.getElementById("flag2");
-  var flag3 = document.getElementById("flag3");
-  var flag4 = document.getElementById("flag4");
-  var flagimg = document.getElementById("flagimg");
+  const flag1 = document.getElementById("flag1");
+  const flag2 = document.getElementById("flag2");
+  const flag3 = document.getElementById("flag3");
+  const flag4 = document.getElementById("flag4");
+  const flagimg = document.getElementById("flagimg");
+  const feed = document.getElementById("feed");
+  const buttons = [flag1, flag2, flag3, flag4];
 
-  // get four random image paths
-  var f1 = await randomPng();
-  var f2 = await randomPng();
-  var f3 = await randomPng();
-  var f4 = await randomPng();
+  // Load images.json and countryNames.json
+  const [imagesRes, namesRes] = await Promise.all([
+    fetch("images.json"),
+    fetch("countryNames.json")
+  ]);
+  const images = await imagesRes.json();
+  const countryNames = await namesRes.json();
 
-  // show just filenames as button text (not full paths)
-  flag1.innerHTML = f1.split("/").pop().replace(".png", "");
-  flag2.innerHTML = f2.split("/").pop().replace(".png", "");
-  flag3.innerHTML = f3.split("/").pop().replace(".png", "");
-  flag4.innerHTML = f4.split("/").pop().replace(".png", "");
+  // Pick 4 random flags
+  let choices = [];
+  while (choices.length < 4) {
+    const flag = images[Math.floor(Math.random() * images.length)];
+    if (!choices.includes(flag)) choices.push(flag);
+  }
 
-  // pick one randomly for the displayed flag
-  var flags = [f1, f2, f3, f4];
-  var flag = flags[Math.floor(Math.random() * 4)];
+  // Pick one correct flag to display
+  const correct = choices[Math.floor(Math.random() * 4)];
+  flagimg.setAttribute("src", correct);
+  flagimg.setAttribute("data-correct", correct);
 
-  flagimg.setAttribute("src", flag);
-};
+  // Set buttons to show country names
+  for (let i = 0; i < 4; i++) {
+    const name = countryNames[choices[i]] || choices[i].split("/").pop().replace(".png","");
+    buttons[i].innerHTML = name;
+    buttons[i].value = choices[i];
+  }
+
+  feed.innerHTML = "";
+}
+
+async function clicked(btn) {
+  const flagimg = document.getElementById("flagimg");
+  const feed = document.getElementById("feed");
+  const correct = flagimg.getAttribute("data-correct");
+
+  if (btn.value === correct) {
+    feed.innerHTML = "✅ Correct!";
+  } else {
+    feed.innerHTML = `❌ Wrong! It was ${document.getElementById("flag1").value === correct ? document.getElementById("flag1").innerHTML :
+                       document.getElementById("flag2").value === correct ? document.getElementById("flag2").innerHTML :
+                       document.getElementById("flag3").value === correct ? document.getElementById("flag3").innerHTML :
+                       document.getElementById("flag4").innerHTML}`;
+  }
+
+  await sleep(2000);
+  setup();
+}
 
 
 

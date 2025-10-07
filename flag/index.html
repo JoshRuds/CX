@@ -1,54 +1,39 @@
 <html>
- <head>
+<head>
   <title>FlagGame</title>
   <script defer src="script.js"></script>
   <style>
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    font-family: sans-serif;
-  }
-
-  /* Make the flag image smaller and uniform */
-  #flagimg {
-    width: 300px;   /* pick any size you like */
-    height: auto;
-    border: 2px solid #000;
-    border-radius: 8px;
-  }
-
-  /* Make buttons match the width of the flag */
-  button {
-    width: 300px;
-    padding: 10px;
-    font-size: 1rem;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-  }
-
-  button:hover {
-    background: #eee;
-  }
-
-  #feed {
-    font-weight: bold;
-  }
-
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: sans-serif;
+    }
+    #flagimg {
+      width: 200px;
+      margin-bottom: 20px;
+      border: 2px solid black;
+    }
+    button {
+      width: 250px;
+      height: 60px;
+      font-size: 18px;
+      margin: 5px;
+      cursor: pointer;
+    }
+    #feed {
+      margin-top: 10px;
+      font-size: 18px;
+      height: 24px;
+    }
   </style>
- </head>
- <body onload="setup()">
-  <img id="flagimg" src="flags/gb-eng.png">
-  <button id="flag1" onclick="clicked()"></button><br>
-  <button id="flag2" onclick="clicked()"></button><br>
-  <button id="flag3" onclick="clicked()"></button><br>
-  <button id="flag4" onclick="clicked()"></button><br>
+</head>
+<body onload="setup()">
+  <img id="flagimg" src="">
+  <button id="flag1" onclick="clicked(this)"></button>
+  <button id="flag2" onclick="clicked(this)"></button>
+  <button id="flag3" onclick="clicked(this)"></button>
+  <button id="flag4" onclick="clicked(this)"></button>
   <p id="feed"></p>
- </body>
+</body>
 </html>
-
-
-
-
