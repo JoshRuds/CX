@@ -3,10 +3,40 @@
   <title>FlagGame</title>
   <script defer src="script.js"></script>
   <style>
-    body {
-        width: fit-content;
-        height: fit-content;
-    }
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-family: sans-serif;
+  }
+
+  /* Make the flag image smaller and uniform */
+  #flagimg {
+    width: 300px;   /* pick any size you like */
+    height: auto;
+    border: 2px solid #000;
+    border-radius: 8px;
+  }
+
+  /* Make buttons match the width of the flag */
+  button {
+    width: 300px;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #eee;
+  }
+
+  #feed {
+    font-weight: bold;
+  }
+
   </style>
  </head>
  <body onload="setup()">
