@@ -2,67 +2,61 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+let correctFlag = ""; // store the correct flag globally
+let countryNames = {}; // store names from JSON globally
+
+async function randomPng() {
+  const r = await fetch("images.json");
+  const images = await r.json();
+  const ra = images[Math.floor(Math.random() * images.length)];
+  return ra;
+}
+
 async function setup() {
-  const flag1 = document.getElementById("flag1");
-  const flag2 = document.getElementById("flag2");
-  const flag3 = document.getElementById("flag3");
-  const flag4 = document.getElementById("flag4");
+  const namesRes = await fetch("countryNames.json");
+  countryNames = await namesRes.json();
+
+  const r = await fetch("images.json");
+  const images = await r.json();
+
+  const buttons = [
+    document.getElementById("flag1"),
+    document.getElementById("flag2"),
+    document.getElementById("flag3"),
+    document.getElementById("flag4")
+  ];
   const flagimg = document.getElementById("flagimg");
-  const feed = document.getElementById("feed");
-  const buttons = [flag1, flag2, flag3, flag4];
 
-  // Load images.json and countryNames.json
-  const [imagesRes, namesRes] = await Promise.all([
-    fetch("images.json"),
-    fetch("flagnames.json")
-  ]);
-  const images = await imagesRes.json();
-  const countryNames = await namesRes.json();
-
-  // Pick 4 random flags
-  let choices = [];
+  // choose 4 random unique flags
+  const choices = [];
   while (choices.length < 4) {
     const flag = images[Math.floor(Math.random() * images.length)];
     if (!choices.includes(flag)) choices.push(flag);
   }
 
-  // Pick one correct flag to display
-  const correct = choices[Math.floor(Math.random() * 4)];
-  flagimg.setAttribute("src", correct);
-  flagimg.setAttribute("data-correct", correct);
+  // set random correct answer
+  correctFlag = choices[Math.floor(Math.random() * choices.length)];
+  flagimg.setAttribute("src", correctFlag);
 
-  // Set buttons to show country names
+  // label buttons
   for (let i = 0; i < 4; i++) {
-    const name = countryNames[choices[i]] || choices[i].split("/").pop().replace(".png","");
-    buttons[i].innerHTML = name;
+    const name = countryNames[choices[i]] || choices[i];
+    buttons[i].innerText = name;
     buttons[i].value = choices[i];
   }
 
-  feed.innerHTML = "";
+  // reset feedback
+  document.getElementById("feed").innerHTML = "";
 }
 
 async function clicked(btn) {
-  const flagimg = document.getElementById("flagimg");
-  const feed = document.getElementById("feed");
-  const correct = flagimg.getAttribute("data-correct");
-
-  if (btn.value === correct) {
-    feed.innerHTML = "✅ Correct!";
+  const x = document.getElementById("feed");
+  if (btn.value === correctFlag) {
+    x.innerHTML = "✅ Correct!";
   } else {
-    feed.innerHTML = `❌ Wrong! It was ${document.getElementById("flag1").value === correct ? document.getElementById("flag1").innerHTML :
-                       document.getElementById("flag2").value === correct ? document.getElementById("flag2").innerHTML :
-                       document.getElementById("flag3").value === correct ? document.getElementById("flag3").innerHTML :
-                       document.getElementById("flag4").innerHTML}`;
+    x.innerHTML = "❌ Wrong!";
   }
-
   await sleep(2000);
+  x.innerHTML = "";
   setup();
 }
-
-
-
-function clicked(){
- var x = document.getElementById("feed");
- x.innerHTML = "Correct!";
- sleep(2000).then(() => {x.innerHTML = "";setup();});
-};
