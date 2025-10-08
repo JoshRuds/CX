@@ -4,6 +4,8 @@ function sleep(ms) {
 
 let correctFlag = ""; 
 let countryNames = {}; 
+var score = 0
+var done = 0
 
 function strip(flagPath) {
   // remove "flags/" and ".png"
@@ -18,6 +20,10 @@ async function randomPng() {
 }
 
 async function setup() {
+  const flagimg = document.getElementById("flagimg");
+  flagimg.setAttribute("src", "wait.webp")
+  const scoreh6 = document.getElementById("score");
+  scoreh6.innerHTML = "Score: "+score+"/"+done+" || "+Math.floor((score/done)*100)+"%"
   const namesRes = await fetch("flagnames.json");
   countryNames = await namesRes.json();
 
@@ -30,7 +36,7 @@ async function setup() {
     document.getElementById("flag3"),
     document.getElementById("flag4")
   ];
-  const flagimg = document.getElementById("flagimg");
+  
 
   const choices = [];
   while (choices.length < 4) {
@@ -52,9 +58,11 @@ async function setup() {
 }
 
 async function clicked(btn) {
+  done = done + 1
   const x = document.getElementById("feed");
   if (btn.value === correctFlag) {
     x.innerHTML = "✅ Correct!";
+    score = score + 1 
   } else {
     x.innerHTML = "❌ Wrong!";
   }
