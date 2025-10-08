@@ -23,7 +23,7 @@ async function setup() {
   const flagimg = document.getElementById("flagimg");
   flagimg.setAttribute("src", "wait.webp")
   const scoreh6 = document.getElementById("score");
-  scoreh6.innerHTML = "Score: "+score+"/"+done+" || "+Math.floor((score/done)*100)+"%"
+  scoreh6.innerHTML = "Score: "+score+"/"+done+" || "+Math.floor((score/done)*100)+"%";
   const namesRes = await fetch("flagnames.json");
   countryNames = await namesRes.json();
 

@@ -21,7 +21,7 @@
       margin: 5px;
       cursor: pointer;
     }
-    #feed {
+    .ltext {
       margin-top: 10px;
       font-size: 18px;
       height: 24px;
@@ -29,12 +29,12 @@
   </style>
 </head>
 <body onload="setup()">
-  <h6 id="score">Score: LOADING</h6>
+  <h6 class="ltext" id="score">Score: LOADING</h6>
   <img id="flagimg" src="wait.webp">
   <button id="flag1" onclick="clicked(this)"></button>
   <button id="flag2" onclick="clicked(this)"></button>
   <button id="flag3" onclick="clicked(this)"></button>
   <button id="flag4" onclick="clicked(this)"></button>
-  <p id="feed"></p>
+  <p class="ltext" id="feed"></p>
 </body>
 </html>
