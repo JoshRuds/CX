@@ -57,16 +57,42 @@ async function setup() {
   document.getElementById("feed").innerHTML = "";
 }
 
+
 async function clicked(btn) {
-  done = done + 1
+  done = done + 1;
+
   const x = document.getElementById("feed");
+
+  const buttons = [
+    document.getElementById("flag1"),
+    document.getElementById("flag2"),
+    document.getElementById("flag3"),
+    document.getElementById("flag4")
+  ];
+
+  // highlight correct button
+  buttons.forEach(b => {
+    if (b.value === correctFlag) {
+      b.style.backgroundColor = "#4CAF50"; // green
+    } else {
+      b.style.backgroundColor = ""; // reset others
+    }
+  });
+
   if (btn.value === correctFlag) {
     x.innerHTML = "✅ Correct!";
-    score = score + 1 
+    score = score + 1;
   } else {
     x.innerHTML = "❌ Wrong!";
   }
+
   await sleep(2000);
+
+  // reset button colours before next round
+  buttons.forEach(b => {
+    b.style.backgroundColor = "";
+  });
+
   x.innerHTML = "";
   setup();
 }
